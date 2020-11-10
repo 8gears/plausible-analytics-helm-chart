@@ -1,0 +1,45 @@
+helmDefaults:
+  verify: false
+  wait: true
+  historyMax: 5
+  createNamespace: true
+
+
+repositories:
+  - name: mlohr
+    url: https://helm-charts.mlohr.com/
+#  - name: bitnami
+#    url: https://charts.bitnami.com/bitnami
+
+releases:
+  - name: clickhouse
+    namespace: plausible-analytics
+    chart: mlohr/clickhouse
+    atomic: true
+    version: 1.0.1
+    values:
+      - clickhouse:
+          image: yandex/clickhouse-server:20.8
+          ipv4: false
+          ipv6: true
+
+
+  - name: plausible
+    namespace: plausible-analytics
+    chart: ./
+    atomic: true
+    version: 1.0.1
+    installed: true
+    values:
+      - pgdb:
+          host: 195.154.71.120
+          database: plausible_db
+          sslmode: 'require'
+          port: 8526
+          username: master
+          password: "j*3Q4n-twHjQZBKx"
+      - chdb:
+          url: "http://clickhouse:GeE0Wn7w72EPucyR@clickhouse:8123/plausible_events_db"
+
+
+

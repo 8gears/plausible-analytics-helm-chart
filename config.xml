@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<yandex>
+    <listen_host>::</listen_host>
+    <logger>
+        <level>error</level>
+        <log></log>
+        <errorlog></errorlog>
+        <console>1</console>
+    </logger>
+
+    <!-- <display_name>clickhouse-cluster</display_name> -->
+    <http_port>8123</http_port>
+    <tcp_port>9000</tcp_port>
+
+    <mark_cache_size>5368709120</mark_cache_size>
+
+    <compression incl="clickhouse_compression">
+        <case>
+            <method>lz4</method>
+        </case>
+    </compression>
+
+    <distributed_ddl>
+        <path>/clickhouse/task_queue/ddl</path>
+    </distributed_ddl>
+
+    <remote_servers>
+        <cluster>
+            <shard>
+                <weight>1</weight>
+                <replica>
+                    <host>clickhouse-s0-r0</host>
+                    <port>9000</port>
+                    <user>clickhouse</user>
+                    <password>GeE0Wn7w72EPucyR</password>
+                </replica>
+            </shard>
+        </cluster>
+    </remote_servers>
+
+    <profiles>
+        <default>
+        </default>
+    </profiles>
+
+    <users>
+        <clickhouse>
+            <password_sha256_hex>6ce51de4aefd39339e844d5fb49a818198e04e29cab6114e9141f14f8d757e0b</password_sha256_hex>
+            <networks>
+                <ip>::</ip>
+            </networks>
+            <profile>default</profile>
+            <quota>default</quota>
+        </clickhouse>
+    </users>
+
+    <quotas>
+        <default>
+            <interval>
+                <duration>3600</duration>
+                <queries>0</queries>
+                <errors>0</errors>
+                <result_rows>0</result_rows>
+                <read_rows>0</read_rows>
+                <execution_time>0</execution_time>
+            </interval>
+        </default>
+    </quotas>
+
+    <zookeeper>
+        <node>
+            <host>clickhouse-zookeeper</host>
+            <port>2181</port>
+        </node>
+    </zookeeper>
+</yandex>
