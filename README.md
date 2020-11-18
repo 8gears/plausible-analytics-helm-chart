@@ -1,6 +1,8 @@
 # Plausible Analytics Helm Chart for Kubernetes
  
 [Plausible Analytics][] is a Simple, lightweight privacy-friendly website analytics  alternative to Google Analytics.
+
+[![Artifact HUB](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/plausible-analytics)](https://artifacthub.io/packages/search?repo=plausible-analytics)
  
 
 ## Install Chart
