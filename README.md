@@ -13,7 +13,11 @@ helm repo update
 $ helm install [RELEASE_NAME] 8gears/plausible-analytics
 ```
  
-https://8gears.container-registry.com/harbor/projects/1/helm-charts/plausible-analytics/versions/0.1.0 
+Source Code for this Helm Chart is located at: [8gears/plausible-analytics-helm-chart][https://github.com/8gears/plausible-analytics-helm-chart] 
+ 
+
+View Chart in 8gears Chart Museum: [8gears.container-registry.com/harbor/projects/1/helm-charts/plausible-analytics/versions/0.1.0][https://8gears.container-registry.com/harbor/projects/1/helm-charts/plausible-analytics/versions/0.1.0] 
+
 
 ## Requirements
 
@@ -185,7 +189,21 @@ helmfile apply
 
 ```
 
-See [helmfile.yaml] 
+See [https://github.com/8gears/plausible-analytics-helm-chart/blob/main/helmfile.yaml] 
+
+
+
+## Chart Deployment
+
+
+```shell script
+
+helm repo add  --username='robot$xxxx' --password="xxx" 8gears https://8gears.container-registry.com/chartrepo/library 
+helm push --username='robot$helmcli' --password="$PASSWD" . 8gears
+
+```
+
+
 
 [Plausible Analytics]: https://github.com/plausible/analytics
 [liwenhe1993/charts]: https://github.com/liwenhe1993/charts
