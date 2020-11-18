@@ -173,6 +173,18 @@ affinity: {}
 
 This repository also contains a complete example using Helmfile.
 
+### Helmfile Content
+
+- Postgres 
+- Clickhouse
+- Plausible
+
+```shell script
+
+helmfile apply
+
+```
+
 See [helmfile.yaml] 
 
 [Plausible Analytics]: https://github.com/plausible/analytics
