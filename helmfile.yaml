@@ -1,0 +1,101 @@
+environments:
+  default:
+    values:
+      - default_namespace: plausible-analytics
+      - analytics_domain: "analytics.app.8gears.com"
+      - admin_password: "iam not a secret"
+      - db_password: "iam not a secret"
+
+helmDefaults:
+  wait: true
+  timeout: 180
+
+
+repositories:
+  - name: hakob
+    url: git+https://github.com/Hakob/charts-2@?ref=93a11dce40b1b6c22ac914afece41522bd15aeff
+  - name: 8gears
+    url: https://8gears.container-registry.com/chartrepo/library
+
+releases:
+  - name: plausible
+    namespace: {{ .Values.default_namespace }}
+    chart: 8gears/plausible-analytics
+    atomic: true
+    version: 0.1.0
+    installed: true
+    values:
+      - baseURL: https://{{ .Values.analytics_domain }}
+      - disableAuth: true
+      - disableRegistration: true
+      - adminUser:
+          email: analytics@8gears.com
+          name: admin
+          password: "{{ .Values.admin_password }}"
+      - database:
+          url: "postgress://postgres:{{ .Values.db_password }}@postgres-postgresql:5432/plausible"
+      - clickhouse:
+          url: "http://clickhouse:8123/plausible_events_db"
+      - ingress:
+          enabled: true
+          annotations: # Here we use cert-manager + traefik, but you can select any other ingress provider
+            kubernetes.io/ingress.class: traefik
+            cert-manager.io/cluster-issuer: letsencrypt-prod
+            traefik.ingress.kubernetes.io/router.tls: "true"
+          hosts:
+            - host: {{ .Values.analytics_domain }}
+              paths:
+                - /
+          tls:
+            - secretName: letsencrypt-cert-plausible
+              hosts:
+                - {{ .Values.analytics_domain }}
+  #
+  #
+  - name: clickhouse
+    namespace: {{ .Values.default_namespace }}
+    chart: hakob/clickhouse
+    atomic: true
+    version: 1.0.2
+    installed: true
+    values:
+      - timezone: Europe/Amsterdam
+      - clickhouse:
+          replicas: 1
+          imageVersion: 20.8
+          persistentVolumeClaim:
+            enabled: true
+            dataPersistentVolume:
+              enabled: false # Set to true to enable persistence
+              storageClassName: local
+              storage: "5Gi"
+            logsPersistentVolume:
+              enabled: false
+          configmap:
+            logger:
+              console:
+                level: warning
+            remote_servers:
+              replica:
+                backup:
+                  enabled: false
+      - tabix:
+          enabled: false
+  #
+  #
+  - name: postgres
+    namespace: {{ .Values.default_namespace }}
+    chart: bitnami/postgresql
+    version: 8.9.6
+    atomic: true
+    values:
+      - postgresqlPassword: {{ .Values.db_password }}
+      - postgresqlDatabase: "plausible"
+      - replication:
+          enabled: false
+      - metrics:
+          enabled: true
+      - persistence:
+          enabled: true
+          size: "2Gi"
+
