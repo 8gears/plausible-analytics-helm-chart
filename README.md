@@ -189,7 +189,7 @@ helmfile apply
 
 ```
 
-See [https://github.com/8gears/plausible-analytics-helm-chart/blob/main/helmfile.yaml] 
+See [helmfile.yaml](https://github.com/8gears/plausible-analytics-helm-chart/blob/main/helmfile.yaml) 
 
 
 
