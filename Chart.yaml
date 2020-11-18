@@ -11,6 +11,7 @@ keywords:
   - analytics
 sources:
   - https://github.com/8gears/plausible-analytics-helm-chart
+  - https://github.com/plausible/analytics
 maintainers:
   - name: Vadim Bauer
     email: hello@8gears.com
