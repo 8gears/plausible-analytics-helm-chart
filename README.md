@@ -13,10 +13,10 @@ helm repo update
 $ helm install [RELEASE_NAME] 8gears/plausible-analytics
 ```
  
-Source Code for this Helm Chart is located at: [8gears/plausible-analytics-helm-chart][https://github.com/8gears/plausible-analytics-helm-chart] 
+Source Code for this Helm Chart is located at: [8gears/plausible-analytics-helm-chart](https://github.com/8gears/plausible-analytics-helm-chart)
  
 
-View Chart in 8gears Chart Museum: [8gears.container-registry.com/harbor/projects/1/helm-charts/plausible-analytics/versions/0.1.0][https://8gears.container-registry.com/harbor/projects/1/helm-charts/plausible-analytics/versions/0.1.0] 
+View Chart in 8gears Chart Museum: [8gears.container-registry.com/harbor/projects/1/helm-charts/plausible-analytics/versions/0.1.0](https://8gears.container-registry.com/harbor/projects/1/helm-charts/plausible-analytics/versions/0.1.0)
 
 
 ## Requirements
