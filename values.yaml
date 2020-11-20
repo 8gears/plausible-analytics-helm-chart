@@ -23,9 +23,9 @@ clickhouse: # Clickhouse Database
   url: # The URL Connection String to clickhouse DB see -> https://clickhouse.tech/docs/en/interfaces/http/
 
 smtp: # Plausible uses and SMTP server to send transactional emails e.g. account activation, password reset, weekly reports, etc.
-  enabled: true # Enable/Disable SMTP functionality
+  enabled: false # Enable/Disable SMTP functionality
   mailer:
-    emailAddress:
+    emailAddress: # the email address of the email sender
     adapter:
   host: # The host address of your smtp server.
   port: # The port of your smtp server.
@@ -38,7 +38,10 @@ smtp: # Plausible uses and SMTP server to send transactional emails e.g. account
 postmark: #Alternatively, you can use Postmark to send transactional emails. In this case, use the following parameters:
   apiKey:
 
-geoliteCountryDB:
+geolocation: # MaxMind geolocation database#
+  enabled: false # Enable/Disable the automated fetch of
+  account_id: # Account/User ID from maxmind.com
+  license_key: # My License Key from maxmind.com
 
 # Google Search Integration
 # See: https://docs.plausible.io/self-hosting-configuration#google-search-integration

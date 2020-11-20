@@ -74,8 +74,6 @@ smtp: # Plausible uses and SMTP server to send transactional emails e.g. account
 postmark: #Alternatively, you can use Postmark to send transactional emails. In this case, use the following parameters:
   apiKey:
 
-geoliteCountryDB:
-
 # Google Search Integration
 # See: https://docs.plausible.io/self-hosting-configuration#google-search-integration
 google:
@@ -93,6 +91,11 @@ twitter:
 
 labels: {} # Extra Labels to apply on your k8s deployment
 extraEnv: [] # Extra Env Variables that are passed down to plausible 1:1
+
+geolocation: # MaxMind geolocation database#
+  enabled: false # Enable/Disable the automated fetch of
+  account_id: # Account/User ID from maxmind.com
+  license_key: # My License Key from maxmind.com
 
 ```
 

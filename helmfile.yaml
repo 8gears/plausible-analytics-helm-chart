@@ -10,10 +10,7 @@ helmDefaults:
   wait: true
   timeout: 180
 
-
 repositories:
-  - name: hakob
-    url: git+https://github.com/Hakob/charts-2@?ref=93a11dce40b1b6c22ac914afece41522bd15aeff
   - name: 8gears
     url: https://8gears.container-registry.com/chartrepo/library
 
@@ -22,7 +19,7 @@ releases:
     namespace: {{ .Values.default_namespace }}
     chart: 8gears/plausible-analytics
     atomic: true
-    version: 0.1.0
+    version: 0.2.1
     installed: true
     values:
       - baseURL: https://{{ .Values.analytics_domain }}
@@ -36,6 +33,10 @@ releases:
           url: "postgress://postgres:{{ .Values.db_password }}@postgres-postgresql:5432/plausible"
       - clickhouse:
           url: "http://clickhouse:8123/plausible_events_db"
+      - geolocation:
+          enabled: false
+          account_id:
+          license_key:
       - ingress:
           enabled: true
           annotations: # Here we use cert-manager + traefik, but you can select any other ingress provider
@@ -54,7 +55,7 @@ releases:
   #
   - name: clickhouse
     namespace: {{ .Values.default_namespace }}
-    chart: hakob/clickhouse
+    chart: 8gears/clickhouse
     atomic: true
     version: 1.0.2
     installed: true
@@ -67,7 +68,7 @@ releases:
             enabled: true
             dataPersistentVolume:
               enabled: false # Set to true to enable persistence
-              storageClassName: local
+              storageClassName: local # set storage class
               storage: "5Gi"
             logsPersistentVolume:
               enabled: false
@@ -94,8 +95,7 @@ releases:
       - replication:
           enabled: false
       - metrics:
-          enabled: true
+          enabled: false
       - persistence:
-          enabled: true
-          size: "2Gi"
+          enabled: false
 
