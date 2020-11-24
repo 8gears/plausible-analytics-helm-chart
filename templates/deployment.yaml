@@ -111,8 +111,10 @@ spec:
           volumeMounts:
             - name: app-tmp
               mountPath: /app/tmp
+            {{- if .Values.geolocation.enabled }}
             - name: geoip
               mountPath: /geoip/
+            {{- end }}
           livenessProbe:
             httpGet:
               path: /
