@@ -73,6 +73,20 @@ spec:
                   key: ADMIN_USER_PWD
                   name: {{ include "plausible-analytics.fullname" . }}
             {{- end }}
+            {{- if .Values.google.clientID }}
+            - name: GOOGLE_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  key: GOOGLE_CLIENT_ID
+                  name: {{ include "plausible-analytics.fullname" . }}
+            {{- end }}
+            {{- if .Values.google.clientSecret }}
+            - name: GOOGLE_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  key: GOOGLE_CLIENT_SECRET
+                  name: {{ include "plausible-analytics.fullname" . }}
+            {{- end }}
             {{- if .Values.database.enabled }}
             {{- if .Values.database.url }}
             - name: DATABASE_URL
