@@ -232,7 +232,7 @@ spec:
             - name: DISABLE_REGISTRATION
               value: {{ .Values.disableRegistration | toString | quote }}
             {{- end }}
-            {{- if .Values.disableAuth }}
+            {{- if .Values.baseURL }}
             - name: BASE_URL
               value: {{ .Values.baseURL | toString | quote }}
             {{- end }}
