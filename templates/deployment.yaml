@@ -168,6 +168,14 @@ spec:
                   name: {{ include "plausible-analytics.fullname" . }}
             {{- end }}
             {{- end }}
+            {{- if .Values.disableAuth }}
+            - name: DISABLE_AUTH
+              value: {{ .Values.disableAuth | toString | quote }}
+            {{- end }}
+            {{- if .Values.disableRegistration }}
+            - name: DISABLE_REGISTRATION
+              value: {{ .Values.disableRegistration | toString | quote }}
+            {{- end }}
             {{- if .Values.baseURL }}
             - name: BASE_URL
               value: {{ .Values.baseURL | toString | quote }}
