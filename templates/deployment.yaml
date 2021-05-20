@@ -80,6 +80,64 @@ spec:
                   key: GOOGLE_CLIENT_ID
                   name: {{ include "plausible-analytics.fullname" . }}
             {{- end }}
+            {{- if .Values.smtp.enabled }}
+            {{- if .Values.smtp.mailer.emailAddress }}
+            - name: MAILER_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  key: MAILER_EMAIL
+                  name: {{ include "plausible-analytics.fullname" . }}
+            {{- end }}
+            {{- if .Values.smtp.adapter }}
+            - name: MAILER_ADAPTER
+              valueFrom:
+                secretKeyRef:
+                  key: MAILER_ADAPTER
+                  name: {{ include "plausible-analytics.fullname" . }}
+            {{- end }}
+            {{- if .Values.smtp.host }}
+            - name: SMTP_HOST_ADDR
+              valueFrom:
+                secretKeyRef:
+                  key: SMTP_HOST_ADDR
+                  name: {{ include "plausible-analytics.fullname" . }}
+            {{- end }}
+            {{- if .Values.smtp.port }}
+            - name: SMTP_HOST_PORT
+              valueFrom:
+                secretKeyRef:
+                  key: SMTP_HOST_PORT
+                  name: {{ include "plausible-analytics.fullname" . }}
+            {{- end }}
+            {{- if .Values.smtp.username }}
+            - name: SMTP_USER_NAME
+              valueFrom:
+                secretKeyRef:
+                  key: SMTP_USER_NAME
+                  name: {{ include "plausible-analytics.fullname" . }}
+            {{- end }}
+            {{- if .Values.smtp.password }}
+            - name: SMTP_USER_PWD
+              valueFrom:
+                secretKeyRef:
+                  key: SMTP_USER_PWD
+                  name: {{ include "plausible-analytics.fullname" . }}
+            {{- end }}
+            {{- if .Values.smtp.ssl.enabled }}
+            - name: SMTP_HOST_SSL_ENABLED
+              valueFrom:
+                secretKeyRef:
+                  key: SMTP_HOST_SSL_ENABLED
+                  name: {{ include "plausible-analytics.fullname" . }}
+            {{- end }}
+            {{- if .Values.smtp.retires }}
+            - name: SMTP_RETRIES
+              valueFrom:
+                secretKeyRef:
+                  key: SMTP_RETRIES
+                  name: {{ include "plausible-analytics.fullname" . }}
+            {{- end }}
+            {{- end }}
             {{- if .Values.google.clientSecret }}
             - name: GOOGLE_CLIENT_SECRET
               valueFrom:
@@ -290,7 +348,7 @@ spec:
             - name: SMTP_RETRIES
               valueFrom:
                 secretKeyRef:
-                  key: SMTP_HOST_SSL_ENABLED
+                  key: SMTP_RETRIES
                   name: {{ include "plausible-analytics.fullname" . }}
             {{- end }}
             {{- end }}
