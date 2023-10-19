@@ -2,7 +2,7 @@
  
 [Plausible Analytics][] is a Simple, lightweight privacy-friendly website analytics  alternative to Google Analytics.
 
-[![Artifact HUB](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/open-8gears)](https://artifacthub.io/packages/search?repo=open-8gears)
+[![Artifact HUB](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/open-8gears)](https://artifacthub.io/packages/helm/open-8gears/plausible-analytics)
 
  
 
