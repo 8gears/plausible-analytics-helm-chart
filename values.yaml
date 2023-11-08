@@ -12,7 +12,7 @@ adminUser:
   name:   # Display name admin user
   password: # Admin user password
 
-# SECRET_KEY_BASE is Helm randAlphaNum 90
+secretKeyBase: "" # Defaults to random 90 characters alphanumeric string if not set
 
 database: # Postgres Database
   enabled: true
